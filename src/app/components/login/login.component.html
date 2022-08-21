@@ -1,0 +1,43 @@
+<form [formGroup]="loginForm" class="form-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="email" matInput placeholder="Email">
+              <mat-hint 
+              style="color: red;" 
+              *ngIf="loginForm.get('email').errors?.required && loginForm.get('email').touched">
+                Donner votre email
+              </mat-hint> 
+              <mat-hint 
+              style="color: red;" 
+              *ngIf="loginForm.get('email').errors?.required && loginForm.get('email').touched">
+                Email invalide
+              </mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input  formControlName="password" matInput placeholder="Mot de passe" type="password">
+              <mat-hint 
+              style="color: red;" 
+              *ngIf="loginForm.get('password').errors?.required && loginForm.get('password').touched">
+                Donner votre mot de passe
+              </mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        <a routerLink="/inscri">Inscription</a>
+
+    </mat-card-content>
+
+
+      <mat-card-actions>
+        <button (click)="saveForm()" mat-raised-button color="primary">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

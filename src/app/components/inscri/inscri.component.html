@@ -1,0 +1,104 @@
+<form [formGroup]="registerForm" class="form-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Inscription</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input formControlName="lastName" matInput placeholder="Nom">
+              <mat-hint 
+              style="color: red;" 
+              *ngIf="registerForm.get('lastName').errors?.required && registerForm.get('lastName').touched">
+                Donner votre nom
+              </mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input  formControlName="firstName" matInput placeholder="Prénom">
+              <mat-hint 
+              style="color: red;" 
+              *ngIf="registerForm.get('firstName').errors?.required && registerForm.get('firstName').touched">
+                Donner votre prénom
+              </mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+  
+        <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input formControlName="email" matInput placeholder="Email">
+                <mat-hint 
+                style="color: red;" 
+                *ngIf="registerForm.get('email').errors?.required && registerForm.get('email').touched">
+                  Donner un email
+                </mat-hint>   
+                <mat-hint 
+                style="color: red;" 
+                *ngIf="!registerForm.get('email').errors?.required && registerForm.get('email').errors?.email">
+                  L'email que vous avez donné est invalide
+                </mat-hint>
+              </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input formControlName="pwd" matInput placeholder="Mot de passe">
+                <mat-hint 
+                style="color: red;" 
+                *ngIf="registerForm.get('pwd').errors?.required && registerForm.get('pwd').touched">
+                  Donner un mot de passe
+                </mat-hint>   
+                <mat-hint 
+                style="color: red;" 
+                *ngIf="!registerForm.get('pwd').errors?.required && registerForm.get('pwd').errors?.email">
+                  Donner un mot de passe
+                </mat-hint>
+              </mat-form-field>
+            </div>
+  
+            <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input  formControlName="verifyPwd" matInput placeholder="Repter le mot de passe">
+                <!-- REpeter le mot de passe --->
+                <mat-hint 
+                style="color: red;" 
+                *ngIf="registerForm.get('verifyPwd').errors?.required && registerForm.get('verifyPwd').touched">
+                  Repèter le mot de passe
+                </mat-hint>
+                <!-- le mot de passe different --->
+                <mat-hint 
+                style="color: red;" 
+                *ngIf="registerForm.get('verifyPwd').value!=registerForm.get('pwd').value
+                && registerForm.get('verifyPwd').touched
+                && !registerForm.get('verifyPwd').errors?.required
+                ">
+                  Les mots de passe que vous avez donnés ne sont pas identiques
+                </mat-hint>
+              </mat-form-field>
+            </div>
+          </div> 
+        
+        <div class="row">
+            <div class="col-md-12">
+                <mat-radio-group  formControlName="gender" class="margin-left">
+                    <mat-radio-button value="male"> Male </mat-radio-button>
+                    <mat-radio-button value="female"> Female </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <a routerLink="/login">Login</a>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="saveForm()" mat-raised-button color="primary">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  
